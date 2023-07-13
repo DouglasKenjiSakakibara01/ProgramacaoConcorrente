@@ -78,11 +78,17 @@ void calcula_matriz(int indice_thread)
 
 int main(int argc, char *argv[])
 {
+    if (argc < 2)
+    {
+        printf("Numero de argumentos incorreto");
+        return 1;
+    }
     /*
     num_threads = 2;
     tam = 100;
     pthread_t threads[num_threads];
     */
+
     pthread_t *threads;
     num_threads = argv[1];
     tam = argv[2];
@@ -97,4 +103,6 @@ int main(int argc, char *argv[])
     {
         pthread_join(threads[i], NULL);
     }
+
+    return 0;
 }
