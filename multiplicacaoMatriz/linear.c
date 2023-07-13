@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#define seed 1
 
 int num_threads, tam;
 float **matrizA;
@@ -25,7 +26,7 @@ void aloca_matriz()
 void gera_matriz()
 {
     int i, j;
-    srand(time(NULL));
+    srand(seed);
 
     for (i = 0; i < tam; i++)
     {
@@ -70,14 +71,15 @@ void calcula_matriz()
 
 int main(int argc, char *argv[])
 {
-
+    /*
     if (argc < 1)
     {
         printf("Numero de argumentos incorreto");
         return 1;
     }
-    tam = argv[1];
-    // tam = 100;
+    */
+    // tam = argv[1];
+    tam = 100;
     clock_t inicio_execucao, fim_execucao;
     double tempo_execucao;
 

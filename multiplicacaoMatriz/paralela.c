@@ -5,6 +5,7 @@
 #include <math.h>
 // #include <sys/time.h> //biblioteca do linux
 #include <time.h>
+#define seed 1
 int num_threads, tam;
 float **matrizA;
 float **matrizB;
@@ -26,7 +27,7 @@ void aloca_matriz()
 void gera_matriz()
 {
     int i, j;
-    srand(time(NULL));
+    srand(seed);
 
     for (i = 0; i < tam; i++)
     {
