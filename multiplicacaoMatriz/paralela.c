@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <math.h>
+#include <sys/time.h> //biblioteca do linux
 
 int num_threads, tam;
 float **matrizA;
@@ -83,6 +84,8 @@ int main(int argc, char *argv[])
         printf("Numero de argumentos incorreto");
         return 1;
     }
+    struct timeval inicio_execucao, fim_execucao;
+    double tempo_execucao;
     /*
     num_threads = 2;
     tam = 100;
@@ -93,7 +96,8 @@ int main(int argc, char *argv[])
     num_threads = argv[1];
     tam = argv[2];
     threads = (pthread_t *)malloc(num_threads * sizeof(pthread_t));
-
+    // registra o tempo de início da execucao
+    gettimeofday(&inicio_execucao, NULL);
     for (int i = 0; i < num_threads; i++)
     {
         pthread_create(&threads[i], NULL, calcula_matriz, i);
@@ -103,6 +107,11 @@ int main(int argc, char *argv[])
     {
         pthread_join(threads[i], NULL);
     }
+    // registra o tempo do fim da execucao
+    gettimeofday(&fim_execucao, NULL);
+    // tempo de execução em segundos
+    tempo_execucao = (fim_execucao.tv_sec - inicio_execucao.tv_sec) + (fim_execucao.tv_usec - inicio_execucao.tv_usec) / 1000000.0;
+    prinft("Tempo de execucao: %d segundos", &tempo_execucao);
 
     return 0;
 }
